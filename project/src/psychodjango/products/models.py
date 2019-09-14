@@ -1,19 +1,10 @@
 from django.db import models
-from django.utils import timezone
 
 
-class Post(models.Model):
-    author = models.ForeignKey('auth.User', on_delete=models.CASCADE)
-    title = models.CharField(max_length=200)
-    text = models.TextField()
-    created_date = models.DateTimeField(
-            default=timezone.now)
-    published_date = models.DateTimeField(
-            blank=True, null=True)
 
-    def publish(self):
-        self.published_date = timezone.now()
-        self.save()
+class Product(models.Model):
 
-    def __str__(self):
-        return self.title
+    nazwa = models.CharField(max_length=120)
+    opis = models.TextField(blank=True,null=True)
+    cena = models.DecimalField(max_digits=10000,decimal_places=2)
+    podsumowanie = models.TextField(default='Django jest naprawdę fajny')
